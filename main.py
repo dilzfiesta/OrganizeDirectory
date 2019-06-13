@@ -30,8 +30,10 @@ class FileOrganizer:
         if(os.access(self.currentFolder, os.R_OK) &
             os.access(self.currentFolder, os.W_OK) &
             os.access(self.currentFolder, os.X_OK)):
+            print("User have permission to access %s" % (self.currentFolder))
             return True
         else:
+            print("User does not have permission to access %s" % (self.currentFolder))
             return False
 
     ''' Change to the user's supplied folder '''
