@@ -2,12 +2,16 @@ import os
 from mimetypes import MimeTypes
 
 class Common:
+
+    ''' Initialize '''
     def __init__(self):
         self.mime = MimeTypes()
+
 
     ''' Extract MIME type from the file '''
     def readMime(self, file):
         return self.mime.guess_type(file)[0]
+
 
     ''' Validate folder '''
     def validateFolder(self, folder):
@@ -19,16 +23,19 @@ class Common:
             print("Invalid folder, exiting.")
             return False
 
+
     ''' Prepare folder name from the MIME type '''
     def getFolderName(self, file):
         parent, offspring = file.split('/')
         children = offspring.split('.')
         return os.path.join(parent.title(), children[len(children) - 1].title())
 
+
     ''' Change to the user's supplied folder '''
     def changeFolder(self, folder):
         #print("Changing current folder to %s" % (folder))
         os.chdir(folder)
+
 
     ''' Create folder if not already exists '''
     def createFolder(self, folder):
@@ -36,10 +43,12 @@ class Common:
             #print("Creating folder: %s" % (folder))
             os.makedirs(folder)
 
+
     ''' Move files to the newly created folder '''
     def moveFileToFolder(self, folder, file):
         #print("Moving %s to %s" % (file, folder))
         os.rename(file, os.path.join(folder, file))
+
 
     ''' Check folder's permission '''
     def checkFolderPermission(self, folder):
