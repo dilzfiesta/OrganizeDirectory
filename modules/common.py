@@ -15,7 +15,7 @@ class Common:
 
     ''' Validate folder '''
     def validateFolder(self, folder):
-        print("Validating %s" % folder)
+        #print("Validating %s" % folder)
         if(os.path.isdir(folder) & os.path.exists(folder)):
             self.changeFolder(folder)
             return True

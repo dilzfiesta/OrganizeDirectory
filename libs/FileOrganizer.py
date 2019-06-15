@@ -14,6 +14,7 @@ class FileOrganizer:
         else:
             self.fetchInput()
 
+
     ''' Request user for the name of the folder '''
     def fetchInput(self):
         print("Enter folder to organize:")
@@ -24,13 +25,16 @@ class FileOrganizer:
 
         self.currentFolder = folder
 
+
     ''' Validate Folder '''
     def validateFolder(self):
         return self.common.validateFolder(self.currentFolder)
 
+
     ''' Check for folder's permission '''
     def folderPermission(self):
         return self.common.checkFolderPermission(self.currentFolder)
+
 
     ''' Fetch all the files from the folder and store them in list '''
     def fetchFiles(self):
@@ -39,10 +43,12 @@ class FileOrganizer:
             self.currentFiles = [f for f in files if not f[0] == '.']
             break
 
+
     ''' Organize files into folders and sub-folders '''
     def organizeFiles(self):
         if(len(self.currentFiles) == 0):
             print("Folder is empty. No files to organize, exiting.")
+            return False
         else:
             print("Organizing files into sub-folders.")
             try:
@@ -52,5 +58,7 @@ class FileOrganizer:
                     self.common.moveFileToFolder(folder, file)
             except:
                 print("Exception occured")
+                return False
             finally:
                 print("Process completed.")
+                return True
