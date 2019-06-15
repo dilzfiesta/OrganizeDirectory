@@ -5,13 +5,32 @@ from modules.Common import Common
 
 class CommonTest(unittest.TestCase):
 
+    ''' Initialize '''
     def setUp(self):
         self.common = Common()
 
     ''' Test MIME type from the file '''
     def test_readMime(self):
+        # Initialize
+        file = "artifacts/css-cheat-sheet-v1.png"
+
         # Assert
-        self.assertEqual("image/png", self.common.readMime("artifacts/css-cheat-sheet-v1.png"))
+        self.assertEqual("image/png", self.common.readMime(file))
+
+    ''' Test for valid folder '''
+    def test_validateFolder(self):
+        # Initialize
+        current = os.getcwd()
+        folder = os.path.join(current, "tests/artifacts")
+
+        # Execute
+        status = self.common.validateFolder(folder)
+
+        # Assert
+        self.assertTrue(status);
+
+        # Cleanup
+        self.common.changeFolder(current)
 
     ''' Test folder name from the MIME type '''
     def test_getFolderName(self):
@@ -44,9 +63,10 @@ class CommonTest(unittest.TestCase):
 
         # Execute
         self.common.createFolder(folder)
+        status = os.path.isdir(folder) & os.path.exists(folder)
 
         # Assert
-        self.assertTrue(os.path.isdir(folder) & os.path.exists(folder))
+        self.assertTrue(status)
 
         # Cleanup
         os.rmdir(folder)
@@ -54,7 +74,8 @@ class CommonTest(unittest.TestCase):
     ''' Test moving files to the newly created folder '''
     def test_moveFileToFolder(self):
         # Initialize
-        parent = os.path.join(os.getcwd(), "tests/artifacts")
+        current = os.getcwd()
+        parent = os.path.join(current, "tests/artifacts")
         folder = os.path.join(parent, "tmp")
         file = "css-cheat-sheet-v1.png"
         newfile = "css-cheat-sheet-v1-new.png"
@@ -64,13 +85,15 @@ class CommonTest(unittest.TestCase):
         copyfile(file, newfile)
         self.common.createFolder(folder)
         self.common.moveFileToFolder(folder, newfile)
+        status = os.path.isfile(os.path.join(folder, newfile))
 
         # Assert
-        self.assertTrue(os.path.isfile(os.path.join(folder, newfile)))
+        self.assertTrue(status)
 
         # Cleanup
         os.remove(os.path.join(folder, newfile))
         os.rmdir(folder)
+        self.common.changeFolder(current)
 
     ''' Test folder's permission when output is True '''
     def test_checkFolderPermissionTrue(self):
@@ -78,10 +101,10 @@ class CommonTest(unittest.TestCase):
         folder = os.path.join(os.getcwd(), "tests/artifacts")
 
         # Execute
-        self.common.checkFolderPermission(folder)
+        status = self.common.checkFolderPermission(folder)
 
         # Assert
-        self.assertTrue(folder)
+        self.assertTrue(status)
 
     ''' Check folder's permission when output is False '''
     def test_checkFolderPermissionFalse(self):
@@ -89,10 +112,10 @@ class CommonTest(unittest.TestCase):
         folder = "/etc/apache2/extra"
 
         # Execute
-        self.common.checkFolderPermission(folder)
+        status = self.common.checkFolderPermission(folder)
 
         # Assert
-        self.assertTrue(folder)
+        self.assertFalse(status)
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(CommonTest)

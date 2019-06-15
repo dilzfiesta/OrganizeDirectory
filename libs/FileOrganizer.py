@@ -2,11 +2,17 @@ import os
 from modules.Common import Common
 
 class FileOrganizer:
+
     ''' Initialize variables '''
-    def __init__(self):
+    def __init__(self, folder):
         self.common = Common()
         self.currentFolder = ''
         self.currentFiles = ''
+
+        if(folder != ""):
+            self.currentFolder = folder
+        else:
+            self.fetchInput()
 
     ''' Request user for the name of the folder '''
     def fetchInput(self):
@@ -16,12 +22,11 @@ class FileOrganizer:
         except:
             folder = ''
 
-        # Check if folder is a directory and it exists
-        if(os.path.isdir(folder) & os.path.exists(folder)):
-            self.currentFolder = folder
-            self.common.changeFolder(self.currentFolder)
-        else:
-            print("Invalid folder name, exiting.")
+        self.currentFolder = folder
+
+    ''' Validate Folder '''
+    def validateFolder(self):
+        return self.common.validateFolder(self.currentFolder)
 
     ''' Check for folder's permission '''
     def folderPermission(self):
@@ -45,7 +50,7 @@ class FileOrganizer:
                     folder = self.common.getFolderName(self.common.readMime(file))
                     self.common.createFolder(folder)
                     self.common.moveFileToFolder(folder, file)
-            except e:
-                print("Exception occured: %s" % e)
+            except:
+                print("Exception occured")
             finally:
                 print("Process completed.")
