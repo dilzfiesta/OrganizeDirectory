@@ -1,41 +1,44 @@
 import os
 from mimetypes import MimeTypes
 
-''' Extract MIME type from the file '''
-def readMime(file):
-    mime = MimeTypes()
-    return mime.guess_type(file)[0]
+class Common:
+    def __init__(self):
+        self.mime = MimeTypes()
 
-''' Prepare folder name from the MIME type '''
-def getFolderName(file):
-    parent, offspring = file.split('/')
-    children = offspring.split('.')
-    return os.path.join(parent.title(), children[len(children) - 1].title())
+    ''' Extract MIME type from the file '''
+    def readMime(self, file):
+        return self.mime.guess_type(file)[0]
 
-''' Change to the user's supplied folder '''
-def changeFolder(folder):
-    #print("Changing current folder to %s" % (self.currentFolder))
-    os.chdir(folder)
+    ''' Prepare folder name from the MIME type '''
+    def getFolderName(self, file):
+        parent, offspring = file.split('/')
+        children = offspring.split('.')
+        return os.path.join(parent.title(), children[len(children) - 1].title())
 
-''' Create folder if not already exists '''
-def createFolder(folder):
-    if not os.path.exists(folder):
-        #print("Creating folder: %s" % (folder))
-        os.makedirs(folder)
+    ''' Change to the user's supplied folder '''
+    def changeFolder(self, folder):
+        #print("Changing current folder to %s" % (self.currentFolder))
+        os.chdir(folder)
 
-''' Move files to the newly created folder '''
-def moveFileToFolder(folder, file):
-    #print("Moving %s to %s" % (file, folder))
-    os.rename(file, os.path.join(folder, file))
+    ''' Create folder if not already exists '''
+    def createFolder(self, folder):
+        if not os.path.exists(folder):
+            #print("Creating folder: %s" % (folder))
+            os.makedirs(folder)
 
-''' Check for folder's permission '''
-def checkFolderPermission(folder):
-    #print("Checking for read, write and execute permissions on the folder")
-    if(os.access(folder, os.R_OK) &
-        os.access(folder, os.W_OK) &
-        os.access(folder, os.X_OK)):
-        #print("User have permission to access %s" % (folder))
-        return True
-    else:
-        #print("User does not have permission to access %s" % (folder))
-        return False
+    ''' Move files to the newly created folder '''
+    def moveFileToFolder(self, folder, file):
+        #print("Moving %s to %s" % (file, folder))
+        os.rename(file, os.path.join(folder, file))
+
+    ''' Check folder's permission '''
+    def checkFolderPermission(self, folder):
+        #print("Checking for read, write and execute permissions on the folder")
+        if(os.access(folder, os.R_OK) &
+            os.access(folder, os.W_OK) &
+            os.access(folder, os.X_OK)):
+            #print("User have permission to access %s" % (folder))
+            return True
+        else:
+            #print("User does not have permission to access %s" % (folder))
+            return False
