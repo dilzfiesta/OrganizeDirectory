@@ -8,6 +8,11 @@ class Common:
         self.mime = MimeTypes()
 
 
+    ''' Fetch input encapsulation '''
+    def rawInput(self, text):
+        return input(text)
+
+
     ''' Extract MIME type from the file '''
     def readMime(self, file):
         return self.mime.guess_type(file)[0]

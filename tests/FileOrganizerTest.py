@@ -1,6 +1,5 @@
 import unittest, os, sys
 sys.path.append(os.path.abspath(sys.path[0]) + '/../')
-#from unittest.mock import MagicMock, patch
 from libs.FileOrganizer import FileOrganizer
 from modules.Common import Common
 
@@ -8,11 +7,8 @@ class FileOrganizerTest(unittest.TestCase):
 
     ''' Initialize '''
     def setUp(self):
-        self.fileOrganizer = FileOrganizer("tests/artifacts")
+        self.fileOrganizer = FileOrganizer()
         self.common = Common()
-
-    ''' Request user for the name of the folder '''
-    #def test_fetchInput(self):
 
 
     ''' Test Folder validation when output is True '''

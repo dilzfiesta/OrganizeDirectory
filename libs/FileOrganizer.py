@@ -1,14 +1,18 @@
-import os
+import os, sys
+sys.path.append(os.path.abspath(sys.path[0]) + '/../')
 from modules.Common import Common
 
 class FileOrganizer:
 
     ''' Initialize variables '''
-    def __init__(self, folder):
+    def __init__(self):
         self.common = Common()
         self.currentFolder = ''
         self.currentFiles = ''
 
+
+    ''' Initialize the program '''
+    def initialize(self, folder):
         if(folder != ""):
             self.currentFolder = folder
         else:
@@ -17,9 +21,8 @@ class FileOrganizer:
 
     ''' Request user for the name of the folder '''
     def fetchInput(self):
-        print("Enter folder to organize:")
         try:
-            folder = input()
+            folder = self.common.rawInput("Enter folder to organize: ")
         except:
             folder = ''
 
