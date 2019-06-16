@@ -1,0 +1,50 @@
+Mohtashims-MacBook-Pro:OrganizeDirectory gyro$ python main.py
+Validating /Users/gyro/Desktop
+Changing current folder to /Users/gyro/Desktop
+Checking for read, write and execute permissions on /Users/gyro/Desktop
+User have permission to access /Users/gyro/Desktop
+Fetching all files from /Users/gyro/Desktop
+Organizing files into sub-folders.
+
+MIME: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+Moving Aadhar Unique Identification Number.docx to Application/DOCUMENT
+
+MIME: application/vnd.openxmlformats-officedocument.presentationml.presentation
+Moving Alexa Architecture_v1.0_Review.pptx to Application/PRESENTATION
+
+MIME: application/pdf
+Moving Apache Solr.pdf to Application/PDF
+
+MIME: image/png
+Moving css-cheat-sheet-v1.png to Image/PNG
+
+MIME: audio/mpeg
+Moving Darius Danesh - colourblind (colour blind).mp3 to Audio/MPEG
+
+MIME: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+Moving DR Project.xlsx to Application/SHEET
+
+MIME: image/bmp
+Moving Famous_personalities.bmp to Image/BMP
+
+MIME: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+Moving Freesmsapi User Recharge List.xlsx to Application/SHEET
+
+MIME: image/png
+Moving Hadoop_Ecosystem.png to Image/PNG
+
+MIME: application/vnd.openxmlformats-officedocument.wordprocessingml.document
+Moving Mohtashim Shaikh CV.docx to Application/DOCUMENT
+
+MIME: application/epub+zip
+Moving Passport.epub to Application/EPUB+ZIP
+
+MIME: application/vnd.openxmlformats-officedocument.presentationml.presentation
+Moving Terraform v0.7.4 Presentation.pptx to Application/PRESENTATION
+
+MIME: application/pdf
+Moving The Game - Neil Strauss (OCR).pdf to Application/PDF
+
+MIME: application/epub+zip
+Moving The Hitchhiker's Guide to the Galaxy.epub to Application/EPUB+ZIP
+Process completed.

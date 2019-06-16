@@ -11,6 +11,15 @@ class FileOrganizer:
         self.currentFiles = ''
 
 
+    ''' Start '''
+    def main(self, folder):
+        self.initialize(folder)
+        if(self.validateFolder()):
+            if(self.folderPermission()):
+                self.fetchFiles()
+                self.organizeFiles()
+
+
     ''' Initialize the program '''
     def initialize(self, folder):
         if(folder != ""):
@@ -56,6 +65,7 @@ class FileOrganizer:
             print("Organizing files into sub-folders.")
             try:
                 for file in self.currentFiles:
+                    print("")
                     folder = self.common.getFolderName(self.common.readMime(file))
                     self.common.createFolder(folder)
                     self.common.moveFileToFolder(folder, file)
