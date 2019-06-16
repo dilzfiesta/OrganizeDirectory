@@ -22,10 +22,7 @@ class FileOrganizer:
 
     ''' Initialize the program '''
     def initialize(self, folder):
-        if(folder != ""):
-            self.currentFolder = folder
-        else:
-            self.fetchInput()
+        self.currentFolder = folder if folder != "" else self.fetchInput()
 
 
     ''' Request user for the name of the folder '''
@@ -35,7 +32,7 @@ class FileOrganizer:
         except:
             folder = ''
 
-        self.currentFolder = folder
+        return folder
 
 
     ''' Validate Folder '''
